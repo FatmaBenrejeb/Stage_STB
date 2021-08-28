@@ -1,3 +1,43 @@
+# TEST Reactions publications 
+reactions = []
+def nombre_reactions():
+    i=1
+    while(i<6):
+        react = driver.find_element_by_xpath('/html/body/div/div/div[2]/div/div[1]/div[2]/div[2]/div[1]/div/section/article['+str(i)+']/footer/div[2]/span[1]/a[1]').text
+        i=i+1
+        #print(react)
+        reactions.append(react)
+    return(reactions)
+
+
+
+# REACTIONS par publication
+
+likes =[]
+loves =[]
+angryy =[]
+for lien in liens_publications:
+    driver.get(lien)
+    react = driver.find_element_by_xpath('/html/body/div/div/div[2]/div/div[1]/div[2]/div/div[3]/a').get_attribute('href')
+    driver.get(react)
+    like = driver.find_element_by_xpath('/html/body/div/div/div[2]/div/table/tbody/tr/td/div/div/a[2]/span').text
+    love = driver.find_element_by_xpath('/html/body/div/div/div[2]/div/table/tbody/tr/td/div/div/a[3]/span').text
+    try:
+        angry = driver.find_element_by_xpath('/html/body/div/div/div[2]/div/table/tbody/tr/td/div/div/a[4]/img').get_attribute('alt')
+        if (angry=='Angry'):
+            angry = driver.find_element_by_xpath('/html/body/div/div/div[2]/div/table/tbody/tr/td/div/div/a[4]/span').text
+        else:
+            angry='0'
+    except:
+        angry='0'
+    likes.append(like)
+    loves.append(love)
+    angryy.append(angry)
+
+
+
+
+
 # description
 def extract_description(lien):
     driver.get(lien)
@@ -29,13 +69,3 @@ def produit_par_publication(pub):
     print(produit)
     
     
-# TEST Reactions publications 
-reactions = []
-def nombre_reactions():
-    i=1
-    while(i<6):
-        react = driver.find_element_by_xpath('/html/body/div/div/div[2]/div/div[1]/div[2]/div[2]/div[1]/div/section/article['+str(i)+']/footer/div[2]/span[1]/a[1]').text
-        i=i+1
-        #print(react)
-        reactions.append(react)
-    return(reactions)
