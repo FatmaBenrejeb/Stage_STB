@@ -1,0 +1,29 @@
+# description
+def extract_description(lien):
+    driver.get(lien)
+    description = driver.find_element_by_xpath('/html/body/div/div/div[2]/div/div[1]/div[1]/div/div/div[1]/div/p')
+    return(description.text)
+    
+for lien in liens_publications:
+    desc=extract_description(lien)
+    descriptions.append(desc)
+print(descriptions)
+
+
+# produits 
+def produit_par_publication(pub):
+  res=""
+  product_list=["double salire","credit","Crédithabitat","crédit" ,"9ardh","9arth","cartebancaire","DigiCarte","STBNet"]
+  for p in product_list:
+      if(type(pub)==list):
+          break
+      if(pub.find(p)!=-1):
+          res=p
+          break
+      else:
+          res="Neutre"
+  return(res)
+  
+  for d in descriptions:
+    produit =  produit_par_publication(d)
+    print(produit)
