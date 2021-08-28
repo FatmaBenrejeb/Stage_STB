@@ -31,10 +31,11 @@ def produit_par_publication(pub):
     
 # TEST Reactions publications 
 reactions = []
-i=1
-while(i<6):
-    react = driver.find_element_by_xpath('/html/body/div/div/div[2]/div/div[1]/div[2]/div[2]/div[1]/div/section/article['+str(i)+']/footer/div[2]/span[1]/a[1]').text
-    i=i+1
-    #print(react)
-    reactions.append(react)
-print(reactions)
+def nombre_reactions():
+    i=1
+    while(i<6):
+        react = driver.find_element_by_xpath('/html/body/div/div/div[2]/div/div[1]/div[2]/div[2]/div[1]/div/section/article['+str(i)+']/footer/div[2]/span[1]/a[1]').text
+        i=i+1
+        #print(react)
+        reactions.append(react)
+    return(reactions)
