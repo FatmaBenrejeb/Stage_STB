@@ -1,0 +1,41 @@
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.keys import Keys 
+
+
+liens_publications=[]
+
+driver = webdriver.Chrome('/Users/Dream/Desktop/Test/chromedriver')
+driver.get('https://mbasic.facebook.com')
+
+
+# Step 3) Search & Enter the Email or Phone field & Enter Password
+username = driver.find_element_by_id("m_login_email")
+password = driver.find_element_by_name("pass")
+submit   = driver.find_element_by_name("login")
+username.send_keys("benrejebfatma@yahoo.fr")
+password.send_keys("bazinga22207009")
+# Step 4) Click Login
+submit.click()
+
+confirm = driver.find_element_by_xpath('/html/body/div/div/div/div/table/tbody/tr/td/div/form/div/input')
+confirm.click()
+
+search = driver.find_element_by_xpath('/html/body/div/div/div[1]/div/form/table/tbody/tr/td[2]/input')
+search.send_keys("SocieteTunisiennedeBanque")
+search.send_keys(Keys.ENTER)
+
+
+stb = driver.find_element_by_xpath('/html/body/div/div/div[2]/div[2]/div[1]/div[2]/div[1]/div[4]/div/div/section/div/div/div/div/article/div/header/table/tbody/tr/td[2]/header/h3/span/strong/a')
+stb.click()
+
+publications = driver.find_elements_by_tag_name('article')
+i=1
+for pub in publications:
+    a = pub.find_element_by_xpath('/html/body/div/div/div[2]/div/div[1]/div[2]/div[2]/div[1]/div/section/article['+str(i)+']/footer/div[2]/a[1]')
+    #print(a.get_attribute('href'))
+    liens_publications.append(a.get_attribute('href'))
+    i=i+1
+
+    
+#print(liens_publications)
