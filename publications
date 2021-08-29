@@ -136,26 +136,29 @@ def extract_user_names():
             except:
                 break
     return(users)
-#################### ERREUR
+#################### Ok!!
 
 
-from selenium.common.exceptions import NoSuchElementException
+# Sauvegarde des publications avec les noms des utilisateurs et les commentaires
+import time 
 import pandas as pd
 
-writer = pd.ExcelWriter('comments.xlsx', engine='xlsxwriter')
+writer = pd.ExcelWriter('1st_pub.xlsx', engine='xlsxwriter')
 
-comments=[]
-users =[]
-df = pd.DataFrame({'links': liens_publications})
-  
+i=1
 for lien in liens_publications:
+    comments=[]
+    users=[]
     driver.get(lien)
     comments=extract_commentaires()
-    users = 
-    # Create a Pandas dataframe from the data.
-    df1 = pd.DataFrame({'commentaires': comments, 'usres': usres})
-    #df1.to_excel(writer, sheet_name='Publication N'+str(liens_publications.index(lien))) #################### ERREUR !!!!!!!!
-
+    time.sleep(10)
+    driver.get(lien)
+    users = extract_user_names()
+    df = pd.DataFrame({'user': users,'commentaire':comments})
+    df.to_excel(writer, sheet_name='Pub Num'+str(i))
+    i=i+1
+    #print(comments)
+    #print(users)
+    
 writer.save()
-
 
