@@ -162,3 +162,35 @@ for lien in liens_publications:
     
 writer.save()
 
+
+
+######### Classification des commentaires par produit
+
+Crédit=[]
+Salaire=[]
+Pret=[]
+Carte=[]
+Service =[]
+
+for c in commentaires:
+    if(est_credit(c)):
+        Crédit.append("V")
+    else:
+        Crédit.append("F")
+    if(est_salaire(c)==True):
+        Salaire.append("V")
+    else:
+        Salaire.append("F")
+    if(est_pret(c)==True):
+        Pret.append("V")
+    else:
+        Pret.append("F")
+    if(est_carte(c)==True):
+        Carte.append("V")
+    else:
+        Carte.append("F")
+    if(est_service(c)==True):
+        Service.append("V")
+    else:
+        Service.append("F")
+    
